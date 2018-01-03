@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_intlen.c                                      .::    .:/ .      .::   */
+/*   printf_o.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/29 19:58:06 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 16:11:23 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/03 16:16:44 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/03 16:58:02 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
+#include "../libft/libft.h"
 
-int		ft_intlen(long n, int base)
+int		printf_x(va_list *ap, char c)
 {
-	int length;
-	
-	length = 0;
-	if (n <= 0)
-		length++;
-	n = ft_abs(n);
-	while (n > 0)
-	{
-		length++;
-		n = n / base;
-	}
-	return (length);
+	int ret;
+
+	ret = 0;
+	if (c == 'x')
+		ret += ft_putnbr_base(va_arg(*ap, unsigned int), "0123456789abcdef", 16);
+	else
+		ret += ft_putnbr_base(va_arg(*ap, unsigned int), "0123456789ABCDEF", 16);
+	return (ret);
 }

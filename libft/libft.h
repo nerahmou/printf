@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/29 13:51:21 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/31 17:13:15 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 17:16:47 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,10 +54,11 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 
-void				ft_putchar(wchar_t c);
-void				ft_putstr(const char *str);
+int					ft_putchar(wchar_t c);
+int					ft_putstr(const char *str);
+int					ft_putwstr(const wchar_t *str);
 void				ft_putnbr(long n);
-void				ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen);
+int					ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnbrendl(int n);
 void				ft_putchar_fd(wchar_t c, int fd);
@@ -102,7 +103,7 @@ void				ft_lstdisplay_str(t_list *list);
 void				ft_lstpushback_str(t_list **list, char *str);
 void				ft_lstclear(void *content, size_t size);
 size_t				ft_char_pos(char *str, char c);
-int					ft_abs(long nbr);
+long				ft_abs(long nbr);
 int					ft_intlen(long nbr, int base);
 int					ft_tolower(int c);
 int					ft_toupper(int c);

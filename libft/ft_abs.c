@@ -6,12 +6,12 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/29 20:00:31 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/29 20:37:50 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 16:10:52 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int	ft_abs(long nbr)
+long	ft_abs(long nbr)
 {
 	return (nbr < 0 ? -nbr : nbr);
 }

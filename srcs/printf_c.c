@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_intlen.c                                      .::    .:/ .      .::   */
+/*   printf_s.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/29 19:58:06 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 16:11:23 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/03 14:09:07 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/03 16:29:47 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
+#include "../libft/libft.h"
 
-int		ft_intlen(long n, int base)
+int		printf_c(va_list *ap, char c)
 {
-	int length;
-	
-	length = 0;
-	if (n <= 0)
-		length++;
-	n = ft_abs(n);
-	while (n > 0)
-	{
-		length++;
-		n = n / base;
-	}
-	return (length);
+	if (c == 'c')
+		return (ft_putchar(va_arg(*ap, int)));
+	return (ft_putchar(va_arg(*ap, wchar_t)));
 }

@@ -6,26 +6,29 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/29 16:19:37 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/31 18:46:39 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/03 17:37:34 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include "../libft/libft.h"
 #include "limits.h"
 
 int main()
 {
-	int a;
-
-	a = 444444444;
-	printf("%U\n", a);
-	ft_printf("%U\n", a);
+	//ft_printf("%D", -60);
+	//printf("\n%d",printf("Je m'appel %s et j'ai %p ans","nessim", "s"));
+	printf("\n%d",printf("Je m'appel %S et j'ai %p ans","nessim", "s"));
+	//printf("%d",printf("%o", 2147483647));
+	//printf("\nret %d",printf("%o", -5));
 	
-
+	
+	
+	
 	/*	
-	printf("%d",printf("%ls", "salutę"));
-	ft_printf("ft_printf : [s] %S\n\n","salutę");
+		printf("%d",printf("%ls", "salutę"));
+		ft_printf("ft_printf : [s] %S\n\n","salutę");
 		printf("printf : [D] %D\n", 42);
 		ft_printf("ft_printf : [D] %D\n\n", 42);
 
