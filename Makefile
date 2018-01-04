@@ -1,0 +1,90 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
+#    Updated: 2018/01/04 16:27:13 by nerahmou    ###    #+. /#+    ###.fr      #
+#                                                                              #
+# **************************************************************************** #
+
+.PHONY: all, clean, fclean
+.SUFFIXES:
+	blue = echo "\x1b[47m\x1b[32m\#\# $1 \#\# \x1b[0m \n"
+
+
+NAME = libftprintf.a
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+SRC_PATH = ./srcs
+LIB_PATH = ./lib
+INC_PATH = ./include
+OBJ_PATH = ./obj
+OBJLIB_PATH = ./obj
+
+SRC_NAME =	ft_printf.c\
+			get_attributs.c \
+			init_suitcase.c \
+			check_attributs.c
+
+LIB_NAME = 	ft_abs.c\
+			ft_atoi.c\
+			ft_bzero.c\
+			ft_itoa.c\
+			ft_strlen.c\
+			ft_strdup.c\
+			ft_itoa_base_low.c\
+			ft_itoa_base_upp.c\
+			ft_memalloc.c\
+			ft_memset.c\
+			ft_putchar.c\
+			ft_putnbr.c\
+			ft_putnbr_base.c\
+			ft_putwchar.c\
+			ft_putwstr.c\
+			ft_putstr.c\
+			ft_strchr.c \
+			ft_strdup.c\
+			ft_strlen.c\
+			ft_strnew.c\
+			nbrlen.c\
+			wcharlen.c
+
+INC_NAME = ft_printf.h
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJLIB_NAME = $(LIB_NAME:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
+INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
+
+all: $(NAME)
+
+$(NAME): $(OBJ) $(OBJLIB)
+	@ar rcs $(NAME) $(OBJ) $(OBJLIB)
+	$(CC) main.c libftprintf.a -o exe 
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(CC) -o $@ -c $<
+
+$(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
+	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
+	@$(CC) -o $@ -c $<
+
+clean:
+	@rm -rf $(OBJ_PATH)
+	@echo "\033[1;34mft_printf\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+
+fclean: clean
+	@rm -rf ./obj $(NAME)
+	@echo "\033[1;34mft_printf\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
+
+re: fclean all
