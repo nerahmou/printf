@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/27 22:04:19 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 23:59:31 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/06 00:27:32 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
+			init_suitcase(&s_c);
 			if (!get_attributs(&s_c, ++str))
 				return (-1);
 			print(&ap, &s_c);
