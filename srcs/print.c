@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   get_attributs.c                                  .::    .:/ .      .::   */
+/*   print.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 19:51:29 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/05 20:06:46 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/05 23:59:48 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	get_attributs(t_suitcase *s_c, const char *str)
+int		print(va_list *ap, t_suitcase *s_c)
 {
-	while (*str && !ft_strchr(TYPE, *str))
+	t_funptr	*tab[15];
+	int			i;
+
+	i = -1;
+	if (!(init_funformat(tab)))
+		return (-1);
+	init_funptr(tab);
+	while (++i < 15)
 	{
-		if (ft_strchr(FLAGS, *str))
-			get_flag(s_c, *str);
-		else if (ft_strchr(WIDTH, *str))
-			get_width(s_c, str);
-		else if (ft_strchr(SIZE, *str))
-			get_size(s_c, str);
-		else if (ft_strchr(PREC, *str))
-			get_prec(s_c, str);
-		else
-			return (0);
-		s_c->length += s_c->position;
-		str += s_c->position;
-		s_c->position = 0;
+		if (s_c->type == tab[i]->format)
+		{
+			(tab[i]->function)(ap, s_c);
+			break ;
+		}
 	}
-	get_type(s_c, *str);
-	if (s_c->type)
-		return (1);
-	return (0);
+	free_funptr(tab);
+	return (1);
 }

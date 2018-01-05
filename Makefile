@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/04 16:27:13 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/06 00:07:25 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 NAME = libftprintf.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRC_PATH = ./srcs
 LIB_PATH = ./lib
@@ -29,7 +29,17 @@ OBJLIB_PATH = ./obj
 SRC_NAME =	ft_printf.c\
 			get_attributs.c \
 			init_suitcase.c \
-			check_attributs.c
+			init_funptr.c \
+			check_attributs.c \
+			print.c \
+			print_s.c \
+			print_c.c \
+			print_d.c \
+			print_o.c \
+			print_u.c \
+			print_x.c \
+			print_p.c \
+			print_m.c 
 
 LIB_NAME = 	ft_abs.c\
 			ft_atoi.c\
@@ -65,11 +75,15 @@ INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
 
+ifdef ALLOCWRAP
+	LDFLAGS += $(HOME)/projects/alloc_wrap.c -ldl
+endif
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ) $(OBJLIB) main.o
 	@ar rcs $(NAME) $(OBJ) $(OBJLIB)
-	$(CC) main.c libftprintf.a -o exe 
+	$(CC) $(LDFLAGS) main.o libftprintf.a -o exe 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -79,8 +93,12 @@ $(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 
+main.o: main.c
+	@$(CC) -o $@ -c $<
+
+
 clean:
-	@rm -rf $(OBJ_PATH)
+	@rm -rf $(OBJ_PATH) main.o exe
 	@echo "\033[1;34mft_printf\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 fclean: clean

@@ -1,38 +1,45 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   get_attributs.c                                  .::    .:/ .      .::   */
+/*   print_c.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 19:51:29 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/05 22:03:16 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/06 00:00:23 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	get_attributs(t_suitcase *s_c, const char *str)
+static int		print_c_size(va_list *ap, t_suitcase *s_c)
 {
-	while (*str && !ft_strchr(TYPE, *str))
+	if (s_c->size == 'l' || s_c->type == 'C')
+		ft_putwchar(va_arg(*ap, wint_t));
+	else
+		ft_putchar(va_arg(*ap, int));
+	return (1);
+}
+
+int				print_c(va_list *ap, t_suitcase *s_c)
+{
+	if (s_c->width)
 	{
-		if (ft_strchr(FLAGS, *str))
-			get_flag(s_c, *str);
-		else if (ft_strchr(WIDTH, *str))
-			get_width(s_c, str);
-		else if (ft_strchr(SIZE, *str))
-			get_size(s_c, str);
-		else if (ft_strchr(PREC, *str))
-			get_prec(s_c, str);
+		if (s_c->is_minus)
+		{
+			print_c_size(ap, s_c);
+			while (--s_c->width)
+				ft_putchar(' ');
+		}
 		else
-			return (0);
-		s_c->length += s_c->position;
-		str += s_c->position;
-		s_c->position = 0;
+		{
+			while (--s_c->width)
+				ft_putchar(' ');
+			print_c_size(ap, s_c);
+		}
 	}
-	get_type(s_c, *str);
-	if (s_c->type)
-		return (1);
+	else
+		print_c_size(ap, s_c);
 	return (0);
 }

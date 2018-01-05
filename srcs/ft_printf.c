@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/27 22:04:19 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 17:54:49 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 23:59:31 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int	ft_printf(const char *str, ...)
 		{
 			if (!get_attributs(&s_c, ++str))
 				return (-1);
-			ft_putstr(va_arg(ap, char *));
+			print(&ap, &s_c);
 			str += s_c.length;
 		}
 		else

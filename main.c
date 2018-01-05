@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 11:31:48 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 17:55:28 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/05 23:58:03 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,10 @@
 
 int main()
 {
-	ft_putnbr(ft_printf("hey %10s","salut"));
+	char c = 10;
+	printf("ft_printf : \n");
+	ft_printf("%d", 40);
+	printf("%%\nprintf : \n");
+	printf("%0 5d", 40);
 	return 0;
 }
