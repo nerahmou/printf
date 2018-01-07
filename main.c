@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/01/04 11:31:48 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 23:58:03 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/07 19:42:44 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/07 21:02:28 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,6 @@
 
 int main()
 {
-	char c = 10;
-	printf("ft_printf : \n");
-	ft_printf("%d", 40);
-	printf("%%\nprintf : \n");
-	printf("%0 5d", 40);
+	test_s();
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 20:06:46 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 23:59:48 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/07 21:02:53 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,21 +15,21 @@
 
 int		print(va_list *ap, t_suitcase *s_c)
 {
-	t_funptr	*tab[15];
-	int			i;
-
-	i = -1;
-	if (!(init_funformat(tab)))
-		return (-1);
-	init_funptr(tab);
-	while (++i < 15)
-	{
-		if (s_c->type == tab[i]->format)
-		{
-			(tab[i]->function)(ap, s_c);
-			break ;
-		}
-	}
-	free_funptr(tab);
+	if (s_c->type == 'd')
+		print_d(ap, s_c);
+	else if (s_c->type == 'o')
+		print_o(ap, s_c);
+	else if (s_c->type == 'u')
+		print_u(ap, s_c);
+	else if (s_c->type == 'x' || s_c->type == 'X')
+		print_x(ap, s_c);
+	else if (s_c->type == 'p')
+		print_p(ap, s_c);
+	else if (s_c->type == 'c')
+		print_c(ap, s_c);
+	else if (s_c->type == 's')
+		print_s(ap, s_c);
+	else
+		print_m(ap, s_c);
 	return (1);
 }

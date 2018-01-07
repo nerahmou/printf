@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:16 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/06 00:00:23 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/07 17:41:26 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 static int		print_c_size(va_list *ap, t_suitcase *s_c)
 {
-	if (s_c->size == 'l' || s_c->type == 'C')
+	if (s_c->size == 'l')
 		ft_putwchar(va_arg(*ap, wint_t));
 	else
 		ft_putchar(va_arg(*ap, int));

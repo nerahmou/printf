@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/06 00:07:25 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/07 21:05:54 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,15 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 SRC_PATH = ./srcs
 LIB_PATH = ./lib
+TEST_PATH = ./test
 INC_PATH = ./include
 OBJ_PATH = ./obj
 OBJLIB_PATH = ./obj
+OBJTEST_PATH = ./obj
 
 SRC_NAME =	ft_printf.c\
 			get_attributs.c \
 			init_suitcase.c \
-			init_funptr.c \
 			check_attributs.c \
 			print.c \
 			print_s.c \
@@ -60,20 +61,25 @@ LIB_NAME = 	ft_abs.c\
 			ft_strchr.c \
 			ft_strdup.c\
 			ft_strlen.c\
+			ft_wstrlen.c\
 			ft_strnew.c\
 			nbrlen.c\
-			wcharlen.c
+			wcharlen.c\
+
+TEST_NAME = test_s.c
 
 INC_NAME = ft_printf.h
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJLIB_NAME = $(LIB_NAME:.c=.o)
+OBJTEST_NAME = $(TEST_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
 INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
+TEST = $(addprefix $(OBJTEST_PATH)/, $(OBJTEST_NAME))
 
 ifdef ALLOCWRAP
 	LDFLAGS += $(HOME)/projects/alloc_wrap.c -ldl
@@ -81,8 +87,8 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB) main.o
-	@ar rcs $(NAME) $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ) $(OBJLIB) $(TEST) main.o
+	@ar rcs $(NAME) $(OBJ) $(OBJLIB) $(TEST)
 	$(CC) $(LDFLAGS) main.o libftprintf.a -o exe 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
@@ -93,9 +99,12 @@ $(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 
-main.o: main.c
+$(OBJTEST_PATH)/%.o: $(TEST_PATH)/%.c
+	@mkdir $(OBJTEST_PATH) 2> /dev/null || true
 	@$(CC) -o $@ -c $<
 
+main.o: main.c
+	@$(CC) -o $@ -c $<
 
 clean:
 	@rm -rf $(OBJ_PATH) main.o exe

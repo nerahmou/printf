@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 23:38:34 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/07 21:05:46 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,7 @@ typedef	struct	s_suitcase
 
 	int		width;
 
+	int		is_precision;
 	int		precision;
 
 	char	size;
@@ -46,12 +47,6 @@ typedef	struct	s_suitcase
 	int		length;
 	int		position;
 }				t_suitcase;
-
-typedef struct	s_funptr
-{
-	char		format;
-	int			(*function)(va_list *ap, t_suitcase *s_c);
-}				t_funptr;
 
 int				ft_printf(const char *str, ...);
 
@@ -71,6 +66,7 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(const char *src);
 char			*ft_strnew(size_t size);
 size_t			ft_strlen(const char *str);
+size_t			ft_wstrlen(const wchar_t *str);
 int				nbrlen(long n, int base);
 int				wcharlen(wchar_t c);
 
@@ -85,10 +81,6 @@ void			get_type(t_suitcase *s_c, char c);
 
 int				print(va_list *ap, t_suitcase *s_c);
 
-int				init_funformat(t_funptr *tab[15]);
-void			init_funptr(t_funptr *tab[15]);
-void			free_funptr(t_funptr *tab[15]);
-
 int				print_s(va_list *ap, t_suitcase *s_c);
 int				print_d(va_list *ap, t_suitcase *s_c);
 int				print_o(va_list *ap, t_suitcase *s_c);
@@ -98,4 +90,5 @@ int				print_c(va_list *ap, t_suitcase *s_c);
 int				print_p(va_list *ap, t_suitcase *s_c);
 int				print_m(va_list *ap, t_suitcase *s_c);
 
+void			test_s();
 #endif

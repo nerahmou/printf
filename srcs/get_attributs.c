@@ -6,14 +6,31 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 19:51:29 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/07 21:03:17 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	get_attributs(t_suitcase *s_c, const char *str)
+static	void	check_sizetype(t_suitcase *s_c)
+{
+	if (s_c->type == 'S')
+		s_c->type = 's';
+	else if (s_c->type == 'C')
+		s_c->type = 'c';
+	else if (s_c->type == 'D')
+		s_c->type = 'd';
+	else if (s_c->type == 'O')
+		s_c->type = 'o';
+	else if (s_c->type == 'U')
+		s_c->type = 'u';
+	else
+		return ;
+	s_c->size = 'l';
+}
+
+int				get_attributs(t_suitcase *s_c, const char *str)
 {
 	while (*str && !ft_strchr(TYPE, *str))
 	{
@@ -32,7 +49,6 @@ int	get_attributs(t_suitcase *s_c, const char *str)
 		s_c->position = 0;
 	}
 	get_type(s_c, *str);
-	if (s_c->type)
-		return (1);
-	return (0);
+	check_sizetype(s_c);
+	return (1);
 }
