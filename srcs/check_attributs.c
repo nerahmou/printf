@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 16:19:08 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/07 20:27:16 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/08 17:34:15 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,6 @@
 
 void	get_flag(t_suitcase *s_c, char c)
 {
-	s_c->is_flag++;
 	if (c == '#')
 		s_c->is_sharp = 1;
 	else if (c == '0')

@@ -6,15 +6,52 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:36 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/05 22:04:52 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/10 13:56:35 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int		print_p(va_list *ap, t_suitcase *s_c)
+static	void	print_p_minus(void *ptr, t_suitcase *s_c)
 {
-	printf("p");
-	return (0);
+	int length;
+
+	length = nbrlen((long)ptr, 16);
+	s_c->ret += ft_putstr("0x");
+	while (s_c->precision-- > length)
+	{
+		s_c->ret += ft_putchar('0');
+		s_c->width--;
+	}
+	s_c->ret += ft_putnbr_base((long)ptr, "0123456789abcdef", 16);
+	while (s_c->width-- > length + 2)
+		s_c->ret += ft_putchar(' ');
+}
+
+static	void	print_p_nominus(void *ptr, t_suitcase *s_c)
+{
+	int length;
+
+	length = nbrlen((long)ptr, 16);
+	while (s_c->width > s_c->precision + 2 && s_c->width > length + 2)
+	{
+		if (s_c->is_zero)
+			s_c->ret += ft_putchar('0');
+		else
+			s_c->ret += ft_putchar(' ');
+		s_c->width--;
+	}
+	s_c->ret += ft_putstr("0x");
+	while (s_c->precision-- > length)
+		s_c->ret += ft_putchar('0');
+	s_c->ret += ft_putnbr_base((long)ptr, "0123456789abcdef", 16);
+}
+
+void			print_p(va_list *ap, t_suitcase *s_c)
+{
+	if (s_c->is_minus)
+		print_p_minus(va_arg(*ap, void *), s_c);
+	else
+		print_p_nominus(va_arg(*ap, void *), s_c);
 }

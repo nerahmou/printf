@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/07 21:05:54 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/10 12:04:54 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@
 
 NAME = libftprintf.a
 
-CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror
+CC = gcc -g
+CFLAGS =  -Wall -Wextra -Werror
 
 SRC_PATH = ./srcs
 LIB_PATH = ./lib
@@ -40,7 +40,8 @@ SRC_NAME =	ft_printf.c\
 			print_u.c \
 			print_x.c \
 			print_p.c \
-			print_m.c 
+			print_m.c \
+			nbr_size.c
 
 LIB_NAME = 	ft_abs.c\
 			ft_atoi.c\
@@ -66,7 +67,13 @@ LIB_NAME = 	ft_abs.c\
 			nbrlen.c\
 			wcharlen.c\
 
-TEST_NAME = test_s.c
+TEST_NAME = test_s.c\
+			test_p.c\
+			test_o.c\
+			test_x.c\
+			test_u.c\
+			test_m.c\
+			test_d.c
 
 INC_NAME = ft_printf.h
 

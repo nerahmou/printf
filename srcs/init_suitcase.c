@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 13:56:20 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/07 17:52:04 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/08 20:46:21 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,6 @@
 
 void	init_suitcase(t_suitcase *s_c)
 {
-	s_c->is_flag = 0;
 	s_c->is_sharp = 0;
 	s_c->is_zero = 0;
 	s_c->is_minus = 0;
@@ -28,4 +27,5 @@ void	init_suitcase(t_suitcase *s_c)
 	s_c->type = 0;
 	s_c->length = 0;
 	s_c->position = 0;
+	s_c->ret = 0;
 }

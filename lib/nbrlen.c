@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:29:45 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/04 14:30:59 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/10 13:43:17 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ int		nbrlen(long n, int base)
 	if (n <= 0)
 		length++;
 	n = ft_abs(n);
-	while (n != 0)
+	while (n)
 	{
 		length++;
 		n = n / base;

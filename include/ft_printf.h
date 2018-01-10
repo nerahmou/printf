@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/07 21:05:46 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/10 13:41:44 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,11 +14,16 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define FLAGS "#0+- "
+# define FLAGS " #0+-"
 # define WIDTH "123456789*"
 # define PREC "."
 # define SIZE "hljz"
 # define TYPE "sSdDioOuUxXcCp%"
+
+# define XUPP "0123456789ABCDEF"
+# define XLOW "0123456789abcdef"
+# define DEC "0123456789"
+# define OCT "01234567"
 
 # include <stdio.h>
 # include <stdarg.h>
@@ -28,7 +33,6 @@
 
 typedef	struct	s_suitcase
 {
-	int		is_flag;
 	int		is_sharp;
 	int		is_zero;
 	int		is_minus;
@@ -46,6 +50,8 @@ typedef	struct	s_suitcase
 
 	int		length;
 	int		position;
+
+	int		ret;
 }				t_suitcase;
 
 int				ft_printf(const char *str, ...);
@@ -54,6 +60,7 @@ long			ft_abs(long nbr);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
+char			*ft_itoa_base_low(int n, int base);
 void			*ft_memalloc(size_t size);
 void			*ft_memset(void *s, int c, size_t n);
 int				ft_putchar(char c);
@@ -69,6 +76,8 @@ size_t			ft_strlen(const char *str);
 size_t			ft_wstrlen(const wchar_t *str);
 int				nbrlen(long n, int base);
 int				wcharlen(wchar_t c);
+intmax_t		d_size(va_list *ap, t_suitcase *s_c);
+uintmax_t		u_size(va_list *ap, t_suitcase *s_c);
 
 void			init_suitcase(t_suitcase *s_c);
 
@@ -81,14 +90,20 @@ void			get_type(t_suitcase *s_c, char c);
 
 int				print(va_list *ap, t_suitcase *s_c);
 
-int				print_s(va_list *ap, t_suitcase *s_c);
-int				print_d(va_list *ap, t_suitcase *s_c);
-int				print_o(va_list *ap, t_suitcase *s_c);
-int				print_u(va_list *ap, t_suitcase *s_c);
-int				print_x(va_list *ap, t_suitcase *s_c);
-int				print_c(va_list *ap, t_suitcase *s_c);
-int				print_p(va_list *ap, t_suitcase *s_c);
-int				print_m(va_list *ap, t_suitcase *s_c);
+void			print_s(va_list *ap, t_suitcase *s_c);
+void			print_d(va_list *ap, t_suitcase *s_c);
+void			print_o(va_list *ap, t_suitcase *s_c);
+void			print_u(va_list *ap, t_suitcase *s_c);
+void			print_x(va_list *ap, t_suitcase *s_c);
+void			print_c(va_list *ap, t_suitcase *s_c);
+void			print_p(va_list *ap, t_suitcase *s_c);
+void			print_m(t_suitcase *s_c);
 
 void			test_s();
+void			test_p();
+void			test_d();
+void			test_o();
+void			test_x();
+void			test_u();
+void			test_m();
 #endif

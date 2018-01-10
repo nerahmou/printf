@@ -6,23 +6,22 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:16 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/07 17:41:26 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/10 13:41:47 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int		print_c_size(va_list *ap, t_suitcase *s_c)
+static void		print_c_size(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->size == 'l')
-		ft_putwchar(va_arg(*ap, wint_t));
+		s_c->ret += ft_putwchar(va_arg(*ap, wint_t));
 	else
-		ft_putchar(va_arg(*ap, int));
-	return (1);
+		s_c->ret += ft_putchar(va_arg(*ap, int));
 }
 
-int				print_c(va_list *ap, t_suitcase *s_c)
+void			print_c(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->width)
 	{
@@ -30,16 +29,15 @@ int				print_c(va_list *ap, t_suitcase *s_c)
 		{
 			print_c_size(ap, s_c);
 			while (--s_c->width)
-				ft_putchar(' ');
+				s_c->ret += ft_putchar(' ');
 		}
 		else
 		{
 			while (--s_c->width)
-				ft_putchar(' ');
+				s_c->ret += ft_putchar(' ');
 			print_c_size(ap, s_c);
 		}
 	}
 	else
 		print_c_size(ap, s_c);
-	return (0);
 }
