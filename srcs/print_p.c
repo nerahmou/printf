@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:36 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/10 13:56:35 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/11 18:59:27 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ static	void	print_p_minus(void *ptr, t_suitcase *s_c)
 
 	length = nbrlen((long)ptr, 16);
 	s_c->ret += ft_putstr("0x");
-	while (s_c->precision-- > length)
+	while (s_c->prec-- > length)
 	{
 		s_c->ret += ft_putchar('0');
 		s_c->width--;
@@ -34,7 +34,7 @@ static	void	print_p_nominus(void *ptr, t_suitcase *s_c)
 	int length;
 
 	length = nbrlen((long)ptr, 16);
-	while (s_c->width > s_c->precision + 2 && s_c->width > length + 2)
+	while (s_c->width > s_c->prec + 2 && s_c->width > length + 2)
 	{
 		if (s_c->is_zero)
 			s_c->ret += ft_putchar('0');
@@ -43,7 +43,7 @@ static	void	print_p_nominus(void *ptr, t_suitcase *s_c)
 		s_c->width--;
 	}
 	s_c->ret += ft_putstr("0x");
-	while (s_c->precision-- > length)
+	while (s_c->prec-- > length)
 		s_c->ret += ft_putchar('0');
 	s_c->ret += ft_putnbr_base((long)ptr, "0123456789abcdef", 16);
 }

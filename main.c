@@ -5,16 +5,17 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/01/07 19:42:44 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/10 14:18:42 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/11 19:16:25 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/11 19:25:03 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-int main()
+int main(int argc, const char *argv[])
 {
-	test_x();
+	//printf("% Zoooo\n");
+	ft_printf("% Zoooo");
 	return 0;
 }

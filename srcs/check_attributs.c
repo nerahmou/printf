@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 16:19:08 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/08 17:34:15 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/11 18:05:01 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,14 +64,14 @@ void	get_size(t_suitcase *s_c, const char *str)
 void	get_prec(t_suitcase *s_c, const char *str)
 {
 	s_c->is_precision = 1;
-	s_c->precision = ft_atoi(++str);
-	if (s_c->precision == -1)
+	s_c->prec = ft_atoi(++str);
+	if (s_c->prec == -1)
 	{
-		s_c->precision = 0;
+		s_c->prec = 0;
 		s_c->position = 1;
 	}
 	else
-		s_c->position = nbrlen(s_c->precision, 10) + 1;
+		s_c->position = nbrlen(s_c->prec, 10) + 1;
 }
 
 void	get_type(t_suitcase *s_c, char c)

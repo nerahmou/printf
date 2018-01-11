@@ -6,14 +6,14 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/29 20:00:31 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 19:35:34 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/11 15:55:05 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-long	ft_abs(long nbr)
+intmax_t	ft_abs(intmax_t nbr)
 {
 	return (nbr < 0 ? -nbr : nbr);
 }

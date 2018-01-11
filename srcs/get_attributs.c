@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/10 12:22:56 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/11 18:30:04 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,5 +50,7 @@ int				get_attributs(t_suitcase *s_c, const char *str)
 	}
 	get_type(s_c, *str);
 	check_sizetype(s_c);
-	return (1);
+	if (s_c->type)
+		return (1);
+	return (0);
 }
