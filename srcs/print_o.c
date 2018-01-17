@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:01:51 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 18:06:10 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 14:09:11 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,12 +16,15 @@
 static	void	print_o_nomin_prec(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 {
 	if (nbr_len > s_c->width && s_c->is_sharp)
-		(s_c->ret += ft_putchar('0')) && s_c->width && s_c->prec;
+	{
+		(s_c->ret += ft_putchar('0')) && s_c->width--;
+		s_c->prec--;
+	}
 	while (s_c->width > nbr_len && s_c->width > s_c->prec)
 		(s_c->ret += ft_putchar(' ')) && s_c->width-- && s_c->prec--;
 	while (s_c->prec > nbr_len)
 		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
-	if (nbr && s_c->prec != 0)
+	if (nbr && s_c->is_precision)
 	{
 		s_c->ret += ft_putnbr_base(nbr, OCT, 8);
 		s_c->width -= nbr_len;
@@ -44,9 +47,10 @@ static	void	print_o_nominus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 			else
 				s_c->ret += ft_putchar(' ');
 		}
-		if (s_c->is_sharp)
-			s_c->ret += ft_putchar('0') && s_c->width--;
-		s_c->ret += ft_putnbr_base(nbr, OCT, 8);
+		if (s_c->is_sharp && nbr)
+			(s_c->ret += ft_putchar('0')) && s_c->width--;
+		ft_putnbr_base(nbr, OCT, 8);
+		s_c->ret += nbrlen(nbr, 8);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 19:15:28 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 17:18:01 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 # define FT_PRINTF_H
 
 # define FLAGS " #0+-"
-# define WIDTH "123456789"
+# define WIDTH "123456789*"
 # define PREC "."
 # define SIZE "hljz"
 # define TYPE "sSdDioOuUxXcCp%"
@@ -75,23 +75,27 @@ char			*ft_strdup(const char *src);
 char			*ft_strnew(size_t size);
 size_t			ft_strlen(const char *str);
 size_t			ft_wstrlen(const wchar_t *str);
-int				nbrlen(intmax_t n, int base);
+int				nbrlen(uintmax_t n, int base);
 int				wcharlen(wchar_t c);
 intmax_t		d_size(va_list *ap, t_suitcase *s_c);
 uintmax_t		u_size(va_list *ap, t_suitcase *s_c);
 
 void			init_suitcase(t_suitcase *s_c);
 
-int				get_attributs(t_suitcase *s_c, const char *str);
+int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str);
 void			get_flag(t_suitcase *s_c, char c);
-void			get_width(t_suitcase *s_c, const char *str);
+void			get_width(va_list *ap, t_suitcase *s_c, const char *str);
 void			get_size(t_suitcase *s_c, const char *str);
-void			get_prec(t_suitcase *s_c, const char *str);
+void			get_prec(va_list *ap, t_suitcase *s_c, const char *str);
 void			get_type(t_suitcase *s_c, char c);
 
 void			print(va_list *ap, t_suitcase *s_c);
 
 void			print_s(va_list *ap, t_suitcase *s_c);
+void			print_s_minus(char *str, t_suitcase *s_c);
+void			print_s_nominus(char *str, t_suitcase *s_c);
+void			print_ws_minus(wchar_t *wstr, t_suitcase *s_c);
+void			print_ws_nominus(wchar_t *wstr, t_suitcase *s_c);
 void			print_d(va_list *ap, t_suitcase *s_c);
 void			print_o(va_list *ap, t_suitcase *s_c);
 void			print_u(va_list *ap, t_suitcase *s_c);

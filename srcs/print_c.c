@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:16 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/10 13:41:47 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 17:07:53 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,12 +29,12 @@ void			print_c(va_list *ap, t_suitcase *s_c)
 		{
 			print_c_size(ap, s_c);
 			while (--s_c->width)
-				s_c->ret += ft_putchar(' ');
+				s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
 		}
 		else
 		{
 			while (--s_c->width)
-				s_c->ret += ft_putchar(' ');
+				s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
 			print_c_size(ap, s_c);
 		}
 	}

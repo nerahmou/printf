@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/30 16:18:30 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/09 15:42:05 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/15 21:14:44 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 int	ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen)
 {
-	static int ret = 0;
+	static int i = 0;
 
 	if (nbr >= baselen)
 	{
@@ -24,8 +24,8 @@ int	ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen)
 	}
 	else
 	{
-		ret++;
+		i++;
 		ft_putchar(base[nbr]);
 	}
-	return (ret);
+	return (i);
 }

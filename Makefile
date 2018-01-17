@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/11 19:04:52 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/17 16:48:38 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ TEST_PATH = ./test
 INC_PATH = ./include
 OBJ_PATH = ./obj
 OBJLIB_PATH = ./obj
-OBJTEST_PATH = ./obj
 
 SRC_NAME =	ft_printf.c\
 			get_attributs.c \
@@ -34,6 +33,7 @@ SRC_NAME =	ft_printf.c\
 			check_attributs.c \
 			print.c \
 			print_s.c \
+			print_ws.c \
 			print_c.c \
 			print_d.c \
 			print_o.c \

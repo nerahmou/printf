@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:02:41 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 18:17:14 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 14:07:42 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,12 +22,13 @@ static	void	print_x_nomin_prec(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 		s_c->width--;
 	}
 	while (s_c->width > nbr_len && s_c->width > s_c->prec)
-		s_c->ret += ft_putchar(' ') && s_c->width--;
+		(s_c->ret += ft_putchar(' ')) && s_c->width--;
 	while (s_c->prec > nbr_len)
-		s_c->ret += ft_putchar('0') && s_c->width-- && s_c->prec--;
+		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
 	if (nbr && s_c->prec != 0)
 	{
-		s_c->ret += ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+		ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+		s_c->ret += nbrlen(nbr, 16);
 		s_c->width -= nbr_len;
 	}
 	while (s_c->width-- > 0)
@@ -55,7 +56,8 @@ static	void	print_x_nominus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 			s_c->ret += 2;
 			s_c->width--;
 		}
-		s_c->ret += ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+		ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+		s_c->ret += nbrlen(nbr, 16);
 	}
 }
 
@@ -68,11 +70,14 @@ static	void	print_x_minus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 		s_c->width -= 2;
 	}
 	while (s_c->prec > nbr_len)
-		s_c->ret += ft_putchar('0') && s_c->width-- && s_c->prec--;
+		(s_c->ret += ft_putchar('0')) && s_c->width-- && s_c->prec--;
 	if (!s_c->prec && !nbr)
 		s_c->width++;
 	else
-		s_c->ret += ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+	{
+		ft_putnbr_base(nbr, s_c->type == 'x' ? XLOW : XUPP, 16);
+		s_c->ret += nbrlen(nbr, 16);
+	}
 	s_c->width -= nbr_len;
 	while (s_c->width-- > 0)
 		s_c->ret += ft_putchar(' ');

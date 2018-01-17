@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/27 22:04:19 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 20:10:40 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 17:40:43 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,14 +18,10 @@ static int	check_and_print(va_list *ap, const char **str)
 	t_suitcase	s_c;
 
 	init_suitcase(&s_c);
-	if (get_attributs(&s_c, ++*str))
-	{
-		print(ap, &s_c);
-		*str += s_c.length;
-		return (s_c.ret);
-	}
+	get_attributs(ap, &s_c, ++*str);
+	print(ap, &s_c);
 	*str += s_c.length;
-	return (0);
+	return (s_c.ret);
 }
 
 int			ft_printf(const char *str, ...)

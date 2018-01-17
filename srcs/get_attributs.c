@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 18:30:04 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 17:18:32 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,27 +30,29 @@ static	void	check_sizetype(t_suitcase *s_c)
 	s_c->size = 'l';
 }
 
-int				get_attributs(t_suitcase *s_c, const char *str)
+int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str)
 {
 	while (*str && !ft_strchr(TYPE, *str))
 	{
 		if (ft_strchr(FLAGS, *str))
 			get_flag(s_c, *str);
 		else if (ft_strchr(WIDTH, *str))
-			get_width(s_c, str);
+			get_width(ap, s_c, str);
 		else if (ft_strchr(SIZE, *str))
 			get_size(s_c, str);
 		else if (ft_strchr(PREC, *str))
-			get_prec(s_c, str);
+			get_prec(ap, s_c, str);
 		else
+		{
+			s_c->type = *str;
+			s_c->length++;
 			return (0);
+		}
 		s_c->length += s_c->position;
 		str += s_c->position;
 		s_c->position = 0;
 	}
 	get_type(s_c, *str);
 	check_sizetype(s_c);
-	if (s_c->type)
-		return (1);
-	return (0);
+	return (1);
 }

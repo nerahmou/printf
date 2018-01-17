@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 16:19:08 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/11 18:05:01 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 19:24:21 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,10 +28,28 @@ void	get_flag(t_suitcase *s_c, char c)
 	s_c->position++;
 }
 
-void	get_width(t_suitcase *s_c, const char *str)
+void	get_width(va_list *ap, t_suitcase *s_c, const char *str)
 {
-	s_c->width = ft_atoi(str);
-	s_c->position = nbrlen(s_c->width, 10);
+	int nbr;
+
+	nbr = 0;
+	if (*str == '*')
+	{
+		nbr = va_arg(*ap, int);
+		if (nbr < 0)
+		{
+			s_c->width = -nbr;
+			s_c->is_minus = 1;
+		}
+		else
+			s_c->width = nbr;
+		s_c->position++;
+	}
+	else
+	{
+		s_c->width = ft_atoi(str);
+		s_c->position = nbrlen(s_c->width, 10);
+	}
 }
 
 void	get_size(t_suitcase *s_c, const char *str)
@@ -61,17 +79,32 @@ void	get_size(t_suitcase *s_c, const char *str)
 	s_c->position++;
 }
 
-void	get_prec(t_suitcase *s_c, const char *str)
+void	get_prec(va_list *ap, t_suitcase *s_c, const char *str)
 {
+	int nbr;
+
+	nbr = 0;
 	s_c->is_precision = 1;
-	s_c->prec = ft_atoi(++str);
-	if (s_c->prec == -1)
+	if (*++str == '*')
 	{
-		s_c->prec = 0;
-		s_c->position = 1;
+		nbr = va_arg(*ap, int);
+		if (nbr < 0)
+			s_c->is_precision = 0;
+		else
+			s_c->prec = nbr;
+		s_c->position += 2;
 	}
 	else
-		s_c->position = nbrlen(s_c->prec, 10) + 1;
+	{
+		s_c->prec = ft_atoi(str);
+		if (s_c->prec == -1)
+		{
+			s_c->prec = 0;
+			s_c->position = 1;
+		}
+		else
+			s_c->position = nbrlen(s_c->prec, 10) + 1;
+	}
 }
 
 void	get_type(t_suitcase *s_c, char c)
@@ -79,11 +112,11 @@ void	get_type(t_suitcase *s_c, char c)
 	char *str;
 
 	str = TYPE;
-	s_c->length++;
 	while (*str)
 	{
 		if (*str == c)
 		{
+			s_c->length++;
 			if (c == 'i')
 				s_c->type = 'd';
 			else
