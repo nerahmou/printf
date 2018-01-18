@@ -6,12 +6,22 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 17:18:32 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 10:26:32 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+
+static	void	check_n(const char *str, t_suitcase *s_c)
+{
+	while (*str)
+		if (*str++ == 'n')
+		{
+			s_c->type = 'n';
+			break ;
+		}
+}
 
 static	void	check_sizetype(t_suitcase *s_c)
 {
@@ -21,6 +31,8 @@ static	void	check_sizetype(t_suitcase *s_c)
 		s_c->type = 'c';
 	else if (s_c->type == 'D')
 		s_c->type = 'd';
+	else if (s_c->type == 'B')
+		s_c->type = 'b';
 	else if (s_c->type == 'O')
 		s_c->type = 'o';
 	else if (s_c->type == 'U')
@@ -32,6 +44,7 @@ static	void	check_sizetype(t_suitcase *s_c)
 
 int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str)
 {
+	check_n(str, s_c);
 	while (*str && !ft_strchr(TYPE, *str))
 	{
 		if (ft_strchr(FLAGS, *str))

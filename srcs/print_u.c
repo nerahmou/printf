@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:02:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 14:10:40 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 08:54:00 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ static	void	print_u_nomin_prec(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 		(s_c->ret += ft_putchar(' ')) && s_c->width--;
 	while (s_c->prec > nbr_len)
 		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
-	if (nbr && s_c->prec != 0)
+	if (nbr || s_c->prec > 0)
 	{
 		ft_putnbr_base(nbr, DEC, 10);
 		s_c->ret += nbrlen(nbr, 10);

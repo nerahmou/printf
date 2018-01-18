@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:01:35 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 17:41:37 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 10:52:41 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,7 @@ static	void	print_d_nom(intmax_t nb, int nb_l, int is_neg, t_suitcase *s_c)
 			s_c->prec--;
 		}
 		ft_putnbr_base(nb, DEC, 10);
-		s_c->ret += nbrlen(nb, 10);
+		s_c->ret += nb_l;
 	}
 	else
 		print_no_mp(nb, nb_l, is_neg, s_c);
@@ -92,7 +92,10 @@ static void		print_d_min(intmax_t nb, int nb_l, int is_neg, t_suitcase *s_c)
 	if (!s_c->prec && !nb)
 		s_c->width++;
 	else
-		s_c->ret += ft_putnbr_base(nb, DEC, 10);
+	{
+		ft_putnbr_base(nb, DEC, 10);
+		s_c->ret += nb_l;
+	}
 	s_c->width -= nb_l;
 	while (s_c->width-- > 0)
 		s_c->ret += ft_putchar(' ');

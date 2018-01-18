@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 16:19:08 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 19:24:21 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 10:41:32 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,14 +35,19 @@ void	get_width(va_list *ap, t_suitcase *s_c, const char *str)
 	nbr = 0;
 	if (*str == '*')
 	{
-		nbr = va_arg(*ap, int);
-		if (nbr < 0)
+		if (s_c->type != 'n')
 		{
-			s_c->width = -nbr;
-			s_c->is_minus = 1;
+			nbr = va_arg(*ap, int);
+			if (nbr < 0)
+			{
+				s_c->width = -nbr;
+				s_c->is_minus = 1;
+			}
+			else
+				s_c->width = nbr;
 		}
 		else
-			s_c->width = nbr;
+			s_c->ret_nul = 1;
 		s_c->position++;
 	}
 	else

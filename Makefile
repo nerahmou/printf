@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/17 16:48:38 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/18 10:47:51 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,13 @@ SRC_NAME =	ft_printf.c\
 			get_attributs.c \
 			init_suitcase.c \
 			check_attributs.c \
+			get_left_ret.c \
 			print.c \
 			print_s.c \
 			print_ws.c \
 			print_c.c \
 			print_d.c \
+			print_b.c \
 			print_o.c \
 			print_u.c \
 			print_x.c \

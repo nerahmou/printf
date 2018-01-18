@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 17:18:01 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 10:35:52 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,13 @@
 # define WIDTH "123456789*"
 # define PREC "."
 # define SIZE "hljz"
-# define TYPE "sSdDioOuUxXcCp%"
+# define TYPE "sSdDibBoOuUxXcCpn%"
 
 # define XUPP "0123456789ABCDEF"
 # define XLOW "0123456789abcdef"
 # define DEC "0123456789"
 # define OCT "01234567"
+# define BI "01"
 
 # define NUL "(null)"
 
@@ -53,6 +54,7 @@ typedef	struct	s_suitcase
 	int		position;
 
 	int		ret;
+	int		ret_nul;
 }				t_suitcase;
 
 int				ft_printf(const char *str, ...);
@@ -97,10 +99,12 @@ void			print_s_nominus(char *str, t_suitcase *s_c);
 void			print_ws_minus(wchar_t *wstr, t_suitcase *s_c);
 void			print_ws_nominus(wchar_t *wstr, t_suitcase *s_c);
 void			print_d(va_list *ap, t_suitcase *s_c);
+void			print_b(va_list *ap, t_suitcase *s_c);
 void			print_o(va_list *ap, t_suitcase *s_c);
 void			print_u(va_list *ap, t_suitcase *s_c);
 void			print_x(va_list *ap, t_suitcase *s_c);
 void			print_c(va_list *ap, t_suitcase *s_c);
 void			print_p(va_list *ap, t_suitcase *s_c);
 void			print_m(t_suitcase *s_c);
+void			get_left_ret(va_list *ap, t_suitcase *s_c, int *ret);
 #endif

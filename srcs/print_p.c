@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:36 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/16 05:24:24 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/17 19:33:23 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,8 @@ static	void	print_p_minus(void *ptr, t_suitcase *s_c)
 		s_c->ret += ft_putchar('0');
 		s_c->width--;
 	}
-	s_c->ret += ft_putnbr_base((long)ptr, "0123456789abcdef", 16);
+	ft_putnbr_base((long)ptr, "0123456789abcdef", 16);
+	s_c->ret += nbrlen((long)ptr, 16);
 	while (s_c->width-- > length + 2)
 		s_c->ret += ft_putchar(' ');
 }

@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 20:06:46 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/10 14:28:19 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/18 10:34:43 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,8 @@ void	print(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->type == 'd')
 		print_d(ap, s_c);
+	else if (s_c->type == 'b')
+		print_b(ap, s_c);
 	else if (s_c->type == 'o')
 		print_o(ap, s_c);
 	else if (s_c->type == 'u')
