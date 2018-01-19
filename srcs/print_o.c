@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:01:51 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/18 08:43:03 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/19 09:13:59 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,10 +16,7 @@
 static	void	print_o_nomin_prec(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 {
 	if (nbr_len > s_c->width && s_c->is_sharp)
-	{
-		(s_c->ret += ft_putchar('0')) && s_c->width--;
-		s_c->prec--;
-	}
+		(s_c->ret += ft_putchar('0')) && (s_c->width-- || s_c->prec--);
 	while (s_c->width > nbr_len && s_c->width > s_c->prec)
 		(s_c->ret += ft_putchar(' ')) && s_c->width--;
 	while (s_c->prec > nbr_len)
@@ -57,9 +54,9 @@ static	void	print_o_nominus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 static	void	print_o_minus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 {
 	if (s_c->is_sharp)
-		(s_c->ret += ft_putchar('0')) && s_c->width-- && s_c->prec--;
+		(s_c->ret += ft_putchar('0')) && (s_c->width-- || s_c->prec--);
 	while (s_c->prec > nbr_len)
-		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
+		(s_c->ret += ft_putchar('0')) && (s_c->prec-- && s_c->width--);
 	if (!s_c->prec && !nbr)
 		s_c->width++;
 	else

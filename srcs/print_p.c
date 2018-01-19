@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:36 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 19:33:23 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/19 09:14:54 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,12 +43,7 @@ static	void	print_p_nominus(void *ptr, t_suitcase *s_c)
 		print_ox = 0;
 	}
 	while (s_c->width > s_c->prec + 2 && s_c->width-- > length + 2)
-	{
-		if (s_c->is_zero)
-			s_c->ret += ft_putchar('0');
-		else
-			s_c->ret += ft_putchar(' ');
-	}
+		s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
 	if (print_ox)
 		s_c->ret += ft_putstr("0x");
 	while (s_c->prec-- > length)

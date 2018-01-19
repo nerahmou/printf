@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/17 16:41:59 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 20:32:36 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/19 09:19:32 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,10 +72,7 @@ void		print_ws_minus(wchar_t *wstr, t_suitcase *s_c)
 		if (s_c->is_precision)
 		{
 			while (*wstr && s_c->prec-- > 0)
-			{
-				s_c->ret += ft_putwchar(*wstr++);
-				s_c->width--;
-			}
+				(s_c->ret += ft_putwchar(*wstr++)) && s_c->width--;
 			while (s_c->width-- > 0)
 				s_c->ret += ft_putchar(' ');
 		}

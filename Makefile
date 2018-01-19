@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/18 10:47:51 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/19 10:10:10 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC_NAME =	ft_printf.c\
 			get_attributs.c \
 			init_suitcase.c \
 			check_attributs.c \
-			get_left_ret.c \
+			check_color_style.c \
+			get_ret_value.c \
 			print.c \
 			print_s.c \
 			print_ws.c \
@@ -47,25 +48,17 @@ SRC_NAME =	ft_printf.c\
 
 LIB_NAME = 	ft_abs.c\
 			ft_atoi.c\
-			ft_bzero.c\
-			ft_itoa.c\
 			ft_strlen.c\
-			ft_strdup.c\
-			ft_itoa_base_low.c\
-			ft_itoa_base_upp.c\
-			ft_memalloc.c\
-			ft_memset.c\
 			ft_putchar.c\
 			ft_putnbr.c\
 			ft_putnbr_base.c\
 			ft_putwchar.c\
 			ft_putwstr.c\
 			ft_putstr.c\
+			ft_strncmp.c \
 			ft_strchr.c \
-			ft_strdup.c\
 			ft_strlen.c\
 			ft_wstrlen.c\
-			ft_strnew.c\
 			nbrlen.c\
 			wcharlen.c\
 

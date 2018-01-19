@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/27 22:04:19 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/18 10:36:38 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/19 10:13:35 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ static void	check_and_print(va_list *ap, const char **str, int *ret)
 	init_suitcase(&s_c);
 	get_attributs(ap, &s_c, ++*str);
 	if (s_c.type == 'n')
-		get_left_ret(ap, &s_c, ret);
+		get_ret_value(ap, &s_c, ret);
 	else
 		print(ap, &s_c);
 	*str += s_c.length;
@@ -36,10 +36,12 @@ int			ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (*str)
 	{
-		while (*str && *str != '%')
+		if (*str != '%' && *str != '{')
 			ret += ft_putchar(*str++);
-		if (*str == '%')
+		else if (*str == '%')
 			check_and_print(&ap, &str, &ret);
+		else
+			str += check_color_style(str, &ret);
 	}
 	va_end(ap);
 	return (ret);

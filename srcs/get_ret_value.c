@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_putnbr_base.c                                 .::    .:/ .      .::   */
+/*   get_left_ret.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/12/30 16:18:30 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/19 08:34:32 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/19 08:47:20 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/19 10:11:04 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-void	ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen)
+void	get_ret_value(va_list *ap, t_suitcase *s_c, int *ret)
 {
-	if (nbr >= baselen)
-	{
-		ft_putnbr_base(nbr / baselen, base, baselen);
-		ft_putnbr_base(nbr % baselen, base, baselen);
-	}
-	else
-		ft_putchar(base[nbr]);
+	if (!s_c->ret_nul)
+		*va_arg(*ap, int *) = *ret;
 }

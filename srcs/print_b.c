@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/18 08:19:18 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/18 08:42:59 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/19 08:58:22 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ static	void	print_b_nomin_prec(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 	while (s_c->width > nbr_len && s_c->width > s_c->prec)
 		(s_c->ret += ft_putchar(' ')) && s_c->width--;
 	while (s_c->prec > nbr_len)
-		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
+		(s_c->ret += ft_putchar('0')) && (s_c->prec-- || s_c->width--);
 	if (nbr || s_c->prec > 0)
 	{
 		ft_putnbr_base(nbr, BI, 2);
@@ -50,7 +50,7 @@ static	void	print_b_nominus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 static	void	print_b_minus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 {
 	while (s_c->prec > nbr_len)
-		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
+		(s_c->ret += ft_putchar('0')) && (s_c->prec-- || s_c->width--);
 	if (!s_c->prec && !nbr)
 		s_c->width++;
 	else
