@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/01/04 16:19:08 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/19 09:47:40 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/20 12:38:18 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2018/01/20 12:57:52 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -114,20 +114,13 @@ void	get_prec(va_list *ap, t_suitcase *s_c, const char *str)
 
 void	get_type(t_suitcase *s_c, char c)
 {
-	char *str;
-
-	str = TYPE;
-	while (*str)
-	{
-		if (*str == c)
+	if (c != 0)
+		if (ft_strchr(TYPE, c))
 		{
 			s_c->length++;
 			if (c == 'i')
 				s_c->type = 'd';
 			else
-				s_c->type = *str;
-			break ;
+				s_c->type = c;
 		}
-		str++;
-	}
 }

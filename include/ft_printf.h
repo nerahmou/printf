@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/19 10:29:12 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/20 13:31:29 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,8 +105,6 @@ int				wcharlen(wchar_t c);
 intmax_t		d_size(va_list *ap, t_suitcase *s_c);
 uintmax_t		u_size(va_list *ap, t_suitcase *s_c);
 
-void			init_suitcase(t_suitcase *s_c);
-
 int				check_color_style(const char *str, int *ret);
 
 int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str);
@@ -117,7 +115,7 @@ void			get_prec(va_list *ap, t_suitcase *s_c, const char *str);
 void			get_type(t_suitcase *s_c, char c);
 void			get_ret_value(va_list *ap, t_suitcase *s_c, int *ret);
 
-void			print(va_list *ap, t_suitcase *s_c);
+int				print(va_list *ap, t_suitcase *s_c);
 void			print_s(va_list *ap, t_suitcase *s_c);
 void			print_s_minus(char *str, t_suitcase *s_c);
 void			print_s_nominus(char *str, t_suitcase *s_c);
@@ -128,7 +126,7 @@ void			print_b(va_list *ap, t_suitcase *s_c);
 void			print_o(va_list *ap, t_suitcase *s_c);
 void			print_u(va_list *ap, t_suitcase *s_c);
 void			print_x(va_list *ap, t_suitcase *s_c);
-void			print_c(va_list *ap, t_suitcase *s_c);
+int				print_c(va_list *ap, t_suitcase *s_c);
 void			print_p(va_list *ap, t_suitcase *s_c);
 void			print_m(t_suitcase *s_c);
 #endif

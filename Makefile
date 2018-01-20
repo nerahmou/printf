@@ -6,7 +6,7 @@
 #    By: nerahmou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:17:07 by nerahmou          #+#    #+#              #
-#    Updated: 2018/01/19 10:10:10 by nerahmou    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/01/20 11:35:57 by nerahmou    ###    #+. /#+    ###.fr      #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ OBJLIB_PATH = ./obj
 
 SRC_NAME =	ft_printf.c\
 			get_attributs.c \
-			init_suitcase.c \
 			check_attributs.c \
 			check_color_style.c \
 			get_ret_value.c \
@@ -75,7 +74,7 @@ OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ) $(OBJLIB) $(INC)
 	@ar rcs $(NAME) $(OBJ) $(OBJLIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c

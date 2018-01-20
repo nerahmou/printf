@@ -6,28 +6,33 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:03:16 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/17 17:07:53 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/20 14:10:16 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static void		print_c_size(va_list *ap, t_suitcase *s_c)
+static int		print_c_size(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->size == 'l')
-		s_c->ret += ft_putwchar(va_arg(*ap, wint_t));
+	{
+		if (!(s_c->ret += ft_putwchar(va_arg(*ap, wint_t))))
+			return (0);
+	}
 	else
 		s_c->ret += ft_putchar(va_arg(*ap, int));
+	return (1);
 }
 
-void			print_c(va_list *ap, t_suitcase *s_c)
+int				print_c(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->width)
 	{
 		if (s_c->is_minus)
 		{
-			print_c_size(ap, s_c);
+			if (!print_c_size(ap, s_c))
+				return (0);
 			while (--s_c->width)
 				s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
 		}
@@ -35,9 +40,11 @@ void			print_c(va_list *ap, t_suitcase *s_c)
 		{
 			while (--s_c->width)
 				s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
-			print_c_size(ap, s_c);
+			if (!print_c_size(ap, s_c))
+				return (0);
 		}
 	}
-	else
-		print_c_size(ap, s_c);
+	else if (!print_c_size(ap, s_c))
+		return (0);
+	return (1);
 }

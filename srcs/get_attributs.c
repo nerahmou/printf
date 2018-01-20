@@ -6,22 +6,12 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/18 10:26:32 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/20 12:58:49 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
-
-static	void	check_n(const char *str, t_suitcase *s_c)
-{
-	while (*str)
-		if (*str++ == 'n')
-		{
-			s_c->type = 'n';
-			break ;
-		}
-}
 
 static	void	check_sizetype(t_suitcase *s_c)
 {
@@ -44,7 +34,8 @@ static	void	check_sizetype(t_suitcase *s_c)
 
 int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str)
 {
-	check_n(str, s_c);
+	if (ft_strchr(str, 'n'))
+		s_c->type = 'n';
 	while (*str && !ft_strchr(TYPE, *str))
 	{
 		if (ft_strchr(FLAGS, *str))
@@ -58,8 +49,7 @@ int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str)
 		else
 		{
 			s_c->type = *str;
-			s_c->length++;
-			return (0);
+			return (1);
 		}
 		s_c->length += s_c->position;
 		str += s_c->position;
@@ -67,5 +57,5 @@ int				get_attributs(va_list *ap, t_suitcase *s_c, const char *str)
 	}
 	get_type(s_c, *str);
 	check_sizetype(s_c);
-	return (1);
+	return (0);
 }
