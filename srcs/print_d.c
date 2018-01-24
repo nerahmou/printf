@@ -6,14 +6,31 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:01:35 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/24 11:07:37 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/24 12:04:35 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static void	print_d_min(intmax_t nbr, int nbr_len, int is_neg, t_suitcase *s_c)
+static void	minus_prec(intmax_t nbr, int len, t_suitcase *s_c)
+{
+	while (s_c->prec > len)
+		(s_c->ret += ft_putchar('0')) && s_c->prec-- && s_c->width--;
+	if (!s_c->prec && !nbr)
+		while (s_c->width-- > 0)
+			s_c->ret += ft_putchar(' ');
+	else
+	{
+		ft_putnbr_base(nbr, DEC, 10);
+		s_c->ret += len;
+		s_c->width -= len;
+		while (s_c->width-- > 0)
+			s_c->ret += ft_putchar(' ');
+	}
+}
+
+static void	minus(intmax_t nbr, int len, int is_neg, t_suitcase *s_c)
 {
 	if (s_c->is_plus || is_neg)
 	{
@@ -24,114 +41,75 @@ static void	print_d_min(intmax_t nbr, int nbr_len, int is_neg, t_suitcase *s_c)
 		s_c->width--;
 	}
 	if (s_c->is_precision)
-	{
-		while (s_c->prec > nbr_len)
-		{
-			s_c->ret += ft_putchar('0');
-			s_c->prec--;
-			s_c->width--;
-		}
-		if (!s_c->prec && !nbr)
-		{
-			while (s_c->width-- > 0)
-				s_c->ret += ft_putchar(' ');
-		}
-		else
-		{
-			ft_putnbr_base(nbr, DEC, 10);
-			s_c->ret += nbr_len;
-			s_c->width -= nbr_len;
-			while (s_c->width-- > 0)
-				s_c->ret += ft_putchar(' ');
-		}
-	}
+		minus_prec(nbr, len, s_c);
 	else
 	{
 		ft_putnbr_base(nbr, DEC, 10);
-		s_c->ret += nbr_len;
-		s_c->width -= nbr_len;
+		s_c->ret += len;
+		s_c->width -= len;
 		while (s_c->width-- > 0)
 			s_c->ret += ft_putchar(' ');
 	}
 }
 
-static void	print_d_nom(intmax_t nbr, int nbr_len, int is_neg, t_suitcase *s_c)
+static void	no_minus_prec(intmax_t nbr, int len, int is_neg, t_suitcase *s_c)
 {
-	if (s_c->is_space && !s_c->is_plus && !is_neg)
-	{
-		s_c->ret += ft_putchar(' ');
-		is_neg = 0;
-		s_c->width--;
-	}
-	if (s_c->is_plus && !is_neg && s_c->prec <= nbr_len)
-	{
-		s_c->ret += ft_putchar('+');
-		s_c->width--;
-		s_c->is_plus = 0;
-	}
-	if (s_c->is_precision)
-	{	
-		while (s_c->width > s_c->prec + (is_neg || s_c->is_plus) && s_c->width > nbr_len + (is_neg || s_c->is_plus))
-		{
+	while (s_c->width > s_c->prec + (is_neg || s_c->is_plus) &&
+			s_c->width > len + (is_neg || s_c->is_plus))
+		(s_c->ret += ft_putchar(' ')) && s_c->width--;
+	if (!s_c->prec && !nbr)
+		while (s_c->width-- > 0)
 			s_c->ret += ft_putchar(' ');
-			s_c->width--;
-		}
-		if (!s_c->prec && !nbr)
-		{
-			while (s_c->width-- > 0)
-				s_c->ret += ft_putchar(' ');
-		}
-		else
-		{
-			if (s_c->is_plus || is_neg)
-			{
-				if (s_c->is_plus && !is_neg)
-					s_c->ret += ft_putchar('+');
-				else
-					s_c->ret += ft_putchar('-');
-				s_c->width--;
-			}
-			while (s_c->prec-- > nbr_len)
-			{
-				s_c->ret += ft_putchar('0');
-
-			}
-			ft_putnbr_base(nbr, DEC, 10);
-			s_c->ret += nbr_len;
-		}
-	}
 	else
 	{
-		if (is_neg && s_c->is_zero && s_c->width > nbr_len)
+		if (s_c->is_plus || is_neg)
 		{
-			s_c->ret += ft_putchar('-');
-			s_c->width--;
-			is_neg = 0;
-		}
-		while (s_c->width > nbr_len + is_neg)
-		{
-			s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
+			if (s_c->is_plus && !is_neg)
+				s_c->ret += ft_putchar('+');
+			else
+				s_c->ret += ft_putchar('-');
 			s_c->width--;
 		}
-		if (is_neg)
-			s_c->ret += ft_putchar('-');
+		while (s_c->prec-- > len)
+			s_c->ret += ft_putchar('0');
 		ft_putnbr_base(nbr, DEC, 10);
-		s_c->ret += nbr_len;
+		s_c->ret += len;
 	}
 }
 
-void			print_d(va_list *ap, t_suitcase *s_c)
+static void	no_minus(intmax_t nbr, int len, int is_neg, t_suitcase *s_c)
+{
+	if (s_c->is_space && !s_c->is_plus && !is_neg)
+		(s_c->ret += ft_putchar(' ')) && (s_c->width-- || (s_c->is_space = 0));
+	if (s_c->is_plus && !is_neg && s_c->prec <= len)
+		(s_c->ret += ft_putchar('+')) && (s_c->width-- || (s_c->is_plus = 0));
+	if (s_c->is_precision)
+		no_minus_prec(nbr, len, is_neg, s_c);
+	else
+	{
+		if (is_neg && s_c->is_zero && s_c->width > len)
+			(s_c->ret += ft_putchar('-')) && s_c->width-- && (is_neg = 0);
+		while (s_c->width-- > len + is_neg)
+			s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
+		if (is_neg)
+			s_c->ret += ft_putchar('-');
+		ft_putnbr_base(nbr, DEC, 10);
+		s_c->ret += len;
+	}
+}
+
+void		print_d(va_list *ap, t_suitcase *s_c)
 {
 	intmax_t	nbr;
-	int			nbr_length;
+	int			len;
 	int			is_neg;
 
 	nbr = d_size(ap, s_c);
 	is_neg = nbr < 0 ? 1 : 0;
 	nbr = nbr < 0 ? -nbr : nbr;
-	nbr_length = nbrlen(nbr, 10);
+	len = nbrlen(nbr, 10);
 	if (s_c->is_minus)
-		print_d_min(nbr, nbr_length, is_neg, s_c);
+		minus(nbr, len, is_neg, s_c);
 	else
-		print_d_nom(nbr, nbr_length, is_neg, s_c);
+		no_minus(nbr, len, is_neg, s_c);
 }
