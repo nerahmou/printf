@@ -50,7 +50,7 @@ static	void	print_x_nominus(uintmax_t nbr, int nbr_len, t_suitcase *s_c)
 		}
 		while (s_c->width-- > nbr_len + (s_c->is_sharp && nbr ? 2 : 0))
 			s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
-		if (s_c->is_sharp && nbr != 0)
+		if (s_c->is_sharp)
 		{
 			s_c->type == 'x' ? ft_putstr("0x") : ft_putstr("0X");
 			s_c->ret += 2;
