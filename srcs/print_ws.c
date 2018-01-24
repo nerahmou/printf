@@ -6,15 +6,38 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/17 16:41:59 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/19 09:19:32 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/23 10:20:28 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
+static int	check_error(wchar_t *wstr, t_suitcase *s_c)
+{
+	int i;
+
+	i = 0;
+	if (s_c->is_precision)
+	{
+		while (i++ < s_c->prec)
+			if (wcharlen(*wstr++) < 0)
+				return (0);
+		return (1);
+	}
+	else
+	{
+		while (*wstr)
+			if (wcharlen(*wstr++) < 0)
+				return (0);
+	}
+	return (1);
+}
+
 static void	print_ws_nominus_width(wchar_t *wstr, t_suitcase *s_c, int length)
 {
+	if (s_c->width < length && !s_c->is_precision)
+		s_c->width = length;
 	if (s_c->is_precision)
 		while (s_c->width-- > s_c->prec)
 			s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
@@ -36,7 +59,7 @@ static void	print_ws_nominus_width(wchar_t *wstr, t_suitcase *s_c, int length)
 		s_c->ret += s_c->is_zero ? ft_putchar('0') : ft_putchar(' ');
 }
 
-void		print_ws_nominus(wchar_t *wstr, t_suitcase *s_c)
+int			print_ws_nominus(wchar_t *wstr, t_suitcase *s_c)
 {
 	int length;
 
@@ -44,11 +67,12 @@ void		print_ws_nominus(wchar_t *wstr, t_suitcase *s_c)
 		print_s_nominus(NUL, s_c);
 	else
 	{
-		length = ft_wstrlen(wstr);
+		if ((length = ft_wstrlen(wstr)) == -1 && !check_error(wstr, s_c))
+			return (0);
 		if (s_c->width > s_c->prec)
 			print_ws_nominus_width(wstr, s_c, length);
 		else if (s_c->is_precision)
-			while (s_c->prec >= wcharlen(*wstr))
+			while (*wstr && s_c->prec >= wcharlen(*wstr) && s_c->prec > 0)
 			{
 				s_c->ret += ft_putwchar(*wstr);
 				s_c->prec -= wcharlen(*wstr++);
@@ -61,28 +85,32 @@ void		print_ws_nominus(wchar_t *wstr, t_suitcase *s_c)
 				s_c->ret += ft_putwchar(*wstr++);
 		}
 	}
+	return (1);
 }
 
-void		print_ws_minus(wchar_t *wstr, t_suitcase *s_c)
+int			print_ws_minus(wchar_t *wstr, t_suitcase *s_c)
 {
 	if (!wstr)
 		print_s_minus(NUL, s_c);
+	else if (ft_wstrlen(wstr) == -1)
+		return (0);
+	if (s_c->is_precision)
+	{
+		while (*wstr && s_c->prec-- > wcharlen(*wstr))
+		{
+			(s_c->ret += ft_putwchar(*wstr));
+			s_c->width -= wcharlen(*wstr++);
+		}
+		while (s_c->width-- > 0)
+			s_c->ret += ft_putchar(' ');
+	}
 	else
 	{
-		if (s_c->is_precision)
-		{
-			while (*wstr && s_c->prec-- > 0)
-				(s_c->ret += ft_putwchar(*wstr++)) && s_c->width--;
-			while (s_c->width-- > 0)
-				s_c->ret += ft_putchar(' ');
-		}
-		else
-		{
-			s_c->width -= ft_wstrlen(wstr);
-			while (*wstr)
-				s_c->ret += ft_putwchar(*wstr++);
-			while (s_c->width-- > 0)
-				s_c->ret += ft_putchar(' ');
-		}
+		s_c->width -= ft_wstrlen(wstr);
+		while (*wstr)
+			s_c->ret += ft_putwchar(*wstr++);
+		while (s_c->width-- > 0)
+			s_c->ret += ft_putchar(' ');
 	}
+	return (1);
 }

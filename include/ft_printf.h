@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/20 13:31:29 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/22 20:05:28 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,7 +99,7 @@ int				ft_putwstr(const wchar_t *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strchr(const char *s, int c);
 size_t			ft_strlen(const char *str);
-size_t			ft_wstrlen(const wchar_t *str);
+int				ft_wstrlen(const wchar_t *str);
 int				nbrlen(uintmax_t n, int base);
 int				wcharlen(wchar_t c);
 intmax_t		d_size(va_list *ap, t_suitcase *s_c);
@@ -116,11 +116,11 @@ void			get_type(t_suitcase *s_c, char c);
 void			get_ret_value(va_list *ap, t_suitcase *s_c, int *ret);
 
 int				print(va_list *ap, t_suitcase *s_c);
-void			print_s(va_list *ap, t_suitcase *s_c);
+int				print_s(va_list *ap, t_suitcase *s_c);
 void			print_s_minus(char *str, t_suitcase *s_c);
 void			print_s_nominus(char *str, t_suitcase *s_c);
-void			print_ws_minus(wchar_t *wstr, t_suitcase *s_c);
-void			print_ws_nominus(wchar_t *wstr, t_suitcase *s_c);
+int				print_ws_minus(wchar_t *wstr, t_suitcase *s_c);
+int				print_ws_nominus(wchar_t *wstr, t_suitcase *s_c);
 void			print_d(va_list *ap, t_suitcase *s_c);
 void			print_b(va_list *ap, t_suitcase *s_c);
 void			print_o(va_list *ap, t_suitcase *s_c);

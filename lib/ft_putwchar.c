@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/03 19:15:51 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/20 13:50:42 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/22 20:09:16 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "../include/ft_printf.h"
 
 int	ft_putwchar(wchar_t c)
-{	
+{
 	int length;
 
 	length = wcharlen(c);

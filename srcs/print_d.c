@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 22:01:35 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/18 10:52:41 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/23 10:17:41 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ static void		fill_plus_min(int is_neg, t_suitcase *s_c, int nb)
 		s_c->ret++;
 		s_c->width--;
 	}
-	else if (s_c->is_minus && s_c->is_zero && !nb)
+	else if (s_c->is_zero && !s_c->is_minus && s_c->width > nbrlen(nb, 10))
 		(s_c->ret += ft_putchar('0')) && s_c->width--;
 }
 
@@ -89,7 +89,7 @@ static void		print_d_min(intmax_t nb, int nb_l, int is_neg, t_suitcase *s_c)
 		s_c->width--;
 		s_c->prec--;
 	}
-	if (!s_c->prec && !nb)
+	if (s_c->is_precision && !s_c->prec && !nb)
 		s_c->width++;
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/05 21:56:07 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/19 10:13:14 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/22 19:47:41 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,20 +59,27 @@ void	print_s_nominus(char *str, t_suitcase *s_c)
 	}
 }
 
-void	print_s(va_list *ap, t_suitcase *s_c)
+int		print_s(va_list *ap, t_suitcase *s_c)
 {
 	if (s_c->is_minus)
 	{
 		if (s_c->size == 'l')
-			print_ws_minus(va_arg(*ap, wchar_t *), s_c);
+		{
+			if (!print_ws_minus(va_arg(*ap, wchar_t *), s_c))
+				return (0);
+		}
 		else
 			print_s_minus(va_arg(*ap, char *), s_c);
 	}
 	else
 	{
 		if (s_c->size == 'l')
-			print_ws_nominus(va_arg(*ap, wchar_t *), s_c);
+		{
+			if (!print_ws_nominus(va_arg(*ap, wchar_t *), s_c))
+				return (0);
+		}
 		else
 			print_s_nominus(va_arg(*ap, char *), s_c);
 	}
+	return (1);
 }

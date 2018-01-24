@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/27 22:04:19 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/20 13:42:49 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/23 11:06:40 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,6 +53,8 @@ int			ft_printf(const char *str, ...)
 
 	ret = 0;
 	va_start(ap, str);
+	if (!ft_strchr(str, '%'))
+		return (ft_putstr(str));
 	while (*str)
 	{
 		if (*str != '%' && *str != '{')
