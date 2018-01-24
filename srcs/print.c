@@ -27,7 +27,7 @@ int		print(va_list *ap, t_suitcase *s_c)
 		print_o(ap, s_c);
 	else if (s_c->type == 'u')
 		print_u(ap, s_c);
-	else if (s_c->type == 'x' || s_c->type == 'X')
+	else if (s_c->type == 'x' || s_c->type == 'X' || s_c->type == 'p')
 		print_x(ap, s_c);
 	else if (s_c->type == 'p')
 		print_p(ap, s_c);
