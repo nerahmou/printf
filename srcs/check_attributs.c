@@ -66,29 +66,6 @@ void	get_size(t_suitcase *s_c, const char *str)
 		s_c->position++;
 	}
 	s_c->position++;
-	/*if (*str == 'h')
-	{
-		if (*(str + 1) == 'h')
-		{
-			s_c->size = 'H';
-			s_c->position++;
-		}
-		else
-			s_c->size = 'h';
-	}
-	else if (*str == 'l')
-		if (*(str + 1) == 'l')
-		{
-			s_c->size = 'L';
-			s_c->position++;
-		}
-		else
-			s_c->size = 'l';
-	else if (*str == 'j')
-		s_c->size = 'j';
-	else
-		s_c->size = 'z';
-	s_c->position++;*/
 }
 
 void	get_prec(va_list *ap, t_suitcase *s_c, const char *str)
