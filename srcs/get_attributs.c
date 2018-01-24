@@ -15,18 +15,8 @@
 
 static	void	check_sizetype(t_suitcase *s_c)
 {
-	if (s_c->type == 'S')
-		s_c->type = 's';
-	else if (s_c->type == 'C')
-		s_c->type = 'c';
-	else if (s_c->type == 'D')
-		s_c->type = 'd';
-	else if (s_c->type == 'B')
-		s_c->type = 'b';
-	else if (s_c->type == 'O')
-		s_c->type = 'o';
-	else if (s_c->type == 'U')
-		s_c->type = 'u';
+	if (ft_strchr("SCDOU", s_c->type))
+		s_c->type += 32;
 	else
 		return ;
 	s_c->size = 'l';
