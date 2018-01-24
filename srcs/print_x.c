@@ -88,7 +88,16 @@ void			print_x(va_list *ap, t_suitcase *s_c)
 	uintmax_t	nbr;
 	int			nbr_length;
 
-	nbr = u_size(ap, s_c);
+if (s_c->type == 'p')
+	{
+		nbr = va_arg(*ap, long);
+		s_c->type = 'x';
+		s_c->is_sharp = 1;
+	}
+	else
+		nbr = u_size(ap, s_c);
+	nbr_length = nbrlen(nbr, 16);
+	//	nbr = u_size(ap, s_c);
 	nbr_length = nbrlen(nbr, 16);
 	if (s_c->is_minus)
 		print_x_minus(nbr, nbr_length, s_c);
