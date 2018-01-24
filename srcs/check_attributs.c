@@ -59,7 +59,14 @@ void	get_width(va_list *ap, t_suitcase *s_c, const char *str)
 
 void	get_size(t_suitcase *s_c, const char *str)
 {
-	if (*str == 'h')
+	s_c->size = *ft_strchr(SIZE, *str);
+	if ((*str == 'h' || *str == 'l') && *str == *(str + 1))
+	{
+		s_c->size += 32;
+		s_c->position++;
+	}
+	s_c->position++;
+	/*if (*str == 'h')
 	{
 		if (*(str + 1) == 'h')
 		{
@@ -81,7 +88,7 @@ void	get_size(t_suitcase *s_c, const char *str)
 		s_c->size = 'j';
 	else
 		s_c->size = 'z';
-	s_c->position++;
+	s_c->position++;*/
 }
 
 void	get_prec(va_list *ap, t_suitcase *s_c, const char *str)
