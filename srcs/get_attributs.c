@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/04 14:02:33 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/20 12:58:49 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/25 13:55:49 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 static	void	check_sizetype(t_suitcase *s_c)
 {
-	if (ft_strchr("SCDOU", s_c->type))
+	if (s_c->type != 0 && ft_strchr("SCDOU", s_c->type))
 		s_c->type += 32;
 	else
 		return ;
