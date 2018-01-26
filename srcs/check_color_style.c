@@ -6,77 +6,53 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/01/19 10:13:45 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/20 14:19:56 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/26 18:43:21 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int	get_style(const char *str)
+static int	get_color_style(const char *str)
 {
-	if (!ft_strncmp(ITALIC, str, 8))
-	{
-		ft_putstr(SET_ITALIC);
-		return (ft_strlen(ITALIC));
-	}
-	if (!ft_strncmp(BOLD, str, 6))
-	{
-		ft_putstr(SET_BOLD);
-		return (ft_strlen(BOLD));
-	}
-	ft_putstr(SET_UNDERLINE);
-	return (ft_strlen(UNDERLINE));
-}
+	int len;
 
-static int	get_background_color(const char *str)
-{
-	if (!ft_strncmp(BBLUE, str, 7))
-	{
-		ft_putstr(SET_BBLUE);
-		return (ft_strlen(BBLUE));
-	}
-	if (!ft_strncmp(BRED, str, 6))
-	{
-		ft_putstr(SET_BRED);
-		return (ft_strlen(BRED));
-	}
-	ft_putstr(SET_BGREEN);
-	return (ft_strlen(BGREEN));
-}
-
-static int	get_color(const char *str)
-{
-	if (!ft_strncmp(BLUE, str, 6))
-	{
+	if (!ft_strncmp(BLUE, str, (len = 6)))
 		ft_putstr(SET_BLUE);
-		return (ft_strlen(BLUE));
-	}
-	if (!ft_strncmp(RED, str, 5))
-	{
+	else if (!ft_strncmp(RED, str, (len = 5)))
 		ft_putstr(SET_RED);
-		return (ft_strlen(RED));
-	}
-	ft_putstr(SET_GREEN);
-	return (ft_strlen(GREEN));
+	else if (!ft_strncmp(GREEN, str, (len = 7)))
+		ft_putstr(SET_GREEN);
+	else if (!ft_strncmp(BBLUE, str, (len = 7)))
+		ft_putstr(SET_BBLUE);
+	else if (!ft_strncmp(BRED, str, (len = 6)))
+		ft_putstr(SET_BRED);
+	else if (!ft_strncmp(BGREEN, str, (len = 8)))
+		ft_putstr(SET_BGREEN);
+	else if (!ft_strncmp(ITALIC, str, (len = 8)))
+		ft_putstr(SET_ITALIC);
+	else if (!ft_strncmp(BOLD, str, (len = 6)))
+		ft_putstr(SET_BOLD);
+	else if (!ft_strncmp(UNDERLINE, str, (len = 11)))
+		ft_putstr(SET_UNDERLINE);
+	else if (!ft_strncmp(RES_COLOR, str, (len = 5)))
+		ft_putstr(SET_RES);
+	return (len);
 }
 
 int			check_color_style(const char *str, int *ret)
 {
-	if (!ft_strncmp(BBLUE, str, 7) || !ft_strncmp(BRED, str, 6) ||
-			!ft_strncmp(BGREEN, str, 8))
-		return (get_background_color(str));
-	else if (!ft_strncmp(BLUE, str, 6) || !ft_strncmp(RED, str, 5) ||
-			!ft_strncmp(GREEN, str, 7))
-		return (get_color(str));
-	else if (!ft_strncmp(ITALIC, str, 8) || !ft_strncmp(BOLD, str, 6) ||
-			!ft_strncmp(UNDERLINE, str, 11))
-		return (get_style(str));
-	else if (!ft_strncmp(RES_COLOR, str, 5))
-	{
-		ft_putstr(SET_RES);
-		return (ft_strlen(RES_COLOR));
-	}
+	if (!ft_strncmp(BBLUE, str, 7)
+			|| !ft_strncmp(BRED, str, 6)
+			|| !ft_strncmp(BGREEN, str, 8)
+			|| !ft_strncmp(BLUE, str, 6)
+			|| !ft_strncmp(RED, str, 5)
+			|| !ft_strncmp(GREEN, str, 7)
+			|| !ft_strncmp(ITALIC, str, 8)
+			|| !ft_strncmp(BOLD, str, 6)
+			|| !ft_strncmp(UNDERLINE, str, 11)
+			|| !ft_strncmp(RES_COLOR, str, 5))
+		return (get_color_style(str));
 	else
 		*ret += ft_putchar('{');
 	return (1);
