@@ -6,7 +6,7 @@
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 20:24:23 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/22 20:05:28 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/01/25 16:47:42 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,7 +89,6 @@ int				ft_printf(const char *str, ...);
 
 intmax_t		ft_abs(long nbr);
 int				ft_atoi(const char *str);
-void			*ft_memalloc(size_t size);
 int				ft_putchar(char c);
 void			ft_putnbr(long nbr);
 void			ft_putnbr_base(uintmax_t nbr, char *base, size_t baselen);
