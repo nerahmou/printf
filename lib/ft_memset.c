@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strlen.c                                      .::    .:/ .      .::   */
+/*   ft_memset.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: nerahmou <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2017/11/29 13:50:49 by nerahmou     #+#   ##    ##    #+#       */
-/*   Updated: 2018/01/03 19:48:39 by nerahmou    ###    #+. /#+    ###.fr     */
+/*   Created: 2017/11/29 13:50:44 by nerahmou     #+#   ##    ##    #+#       */
+/*   Updated: 2017/11/29 13:50:44 by nerahmou    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t		ft_strlen(const char *str)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t	length;
+	size_t	i;
 
-	length = 0;
-	while (*str++)
-		length++;
-	return (length);
+	i = 0;
+	while (i < n)
+	{
+		((char*)s)[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
 }

@@ -13,29 +13,11 @@
 
 #include "../include/ft_printf.h"
 
-static void	init_suitcase(t_suitcase *s_c)
-{
-	s_c->is_sharp = 0;
-	s_c->is_zero = 0;
-	s_c->is_minus = 0;
-	s_c->is_plus = 0;
-	s_c->is_space = 0;
-	s_c->width = 0;
-	s_c->is_precision = 0;
-	s_c->prec = 0;
-	s_c->size = 0;
-	s_c->type = 0;
-	s_c->length = 0;
-	s_c->position = 0;
-	s_c->ret = 0;
-	s_c->ret_nul = 0;
-}
-
 static int	check_and_print(va_list *ap, const char **str, int *ret)
 {
 	t_suitcase	s_c;
 
-	init_suitcase(&s_c);
+	ft_memset(&s_c, 0, sizeof(t_suitcase));
 	*str += get_attributs(ap, &s_c, ++*str);
 	if (s_c.type == 'n')
 		get_ret_value(ap, &s_c, ret);

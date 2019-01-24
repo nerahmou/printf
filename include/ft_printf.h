@@ -88,6 +88,7 @@ typedef	struct	s_suitcase
 int				ft_printf(const char *str, ...);
 
 intmax_t		ft_abs(long nbr);
+void			*ft_memset(void *s, int c, size_t n);
 int				ft_atoi(const char *str);
 int				ft_putchar(char c);
 void			ft_putnbr(long nbr);

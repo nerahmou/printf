@@ -11,14 +11,14 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 int		nbrlen(uintmax_t n, int base)
 {
 	int length;
 
 	length = 0;
-	if (n <= 0)
+	if (n == 0)
 		length++;
 	while (n)
 	{

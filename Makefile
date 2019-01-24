@@ -47,6 +47,7 @@ SRC_NAME =	ft_printf.c\
 
 LIB_NAME = 	ft_abs.c\
 			ft_atoi.c\
+			ft_memset.c\
 			ft_strlen.c\
 			ft_putchar.c\
 			ft_putnbr.c\
@@ -79,11 +80,11 @@ $(NAME): $(OBJ) $(OBJLIB) $(INC)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $< -I $(INC_PATH)
 
 $(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
 	@mkdir $(OBJLIB_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $< -I $(INC_PATH)
 
 clean:
 	@rm -rf $(OBJ_PATH)
